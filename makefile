@@ -4,10 +4,10 @@ CFLAGS=-std=c++17
 INCLUDECADMIUM=-I ../cadmium/include
 
 all: main.o main_receiver.o main_sender.o main_subnet.o data_structures/message.o
-	$(CC) -g -o ABP main.o data_structures/message.o
-	$(CC) -g -o RECEIVER_TEST main_receiver.o data_structures/message.o
-	$(CC) -g -o SENDER_TEST main_sender.o data_structures/message.o
-	$(CC) -g -o SUBNET_TEST main_subnet.o data_structures/message.o
+	$(CC) -g -o bin/ABP main.o data_structures/message.o
+	$(CC) -g -o bin/RECEIVER_TEST main_receiver.o data_structures/message.o
+	$(CC) -g -o bin/SENDER_TEST main_sender.o data_structures/message.o
+	$(CC) -g -o bin/SUBNET_TEST main_subnet.o data_structures/message.o
 main.o: top_model/main.cpp
 	$(CC) -g -c $(CFLAGS) $(INCLUDECADMIUM) top_model/main.cpp -o main.o
 
@@ -24,5 +24,5 @@ data_structures/message.o:
 	$(CC) -g -c $(CFLAGS) $(INCLUDECADMIUM) data_structures/message.cpp -o data_structures/message.o
 
 clean:
-	rm -f ABP *.o *~
+	rm -f bin/ABP *.o *~
 	-for d in data_structures; do (cd $$d; rm -f *.o *~ ); done
