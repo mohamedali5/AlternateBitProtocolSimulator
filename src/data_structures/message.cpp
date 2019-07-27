@@ -4,7 +4,8 @@
 #include <fstream>
 #include <string>
 
-#include "message.hpp"
+//updated relative path --Syed Omar
+#include "../../include/data_structures/message.hpp"
 
 /***************************************************/
 /************* Output stream ************************/

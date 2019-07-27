@@ -13,15 +13,17 @@
 #include <cadmium/logger/tuple_to_ostream.hpp>
 #include <cadmium/logger/common_loggers.hpp>
 
+//updated relative paths --Syed Omar
 
-#include "../vendor/NDTime.hpp"
-#include "../vendor/iestream.hpp"
+#include "../../lib/vendor/NDTime.hpp"
+#include "../../lib/vendor/iestream.hpp"
 
-#include "../data_structures/message.hpp"
 
-#include "../atomics/senderCadmium.hpp"
-#include "../atomics/receiverCadmium.hpp"
-#include "../atomics/subnetCadmium.hpp"
+#include "../../include/data_structures/message.hpp"
+
+#include "../../include/atomics/senderCadmium.hpp"
+#include "../../include/atomics/receiverCadmium.hpp"
+#include "../../include/atomics/subnetCadmium.hpp"
 
 
 using namespace std;
@@ -63,7 +65,8 @@ int main(int argc, char ** argv) {
   auto start = hclock::now(); //to measure simulation execution time
 
 /*************** Loggers *******************/
-  static std::ofstream out_data("abp_output.txt");
+  //updated relative path --Syed Omar
+  static std::ofstream out_data("data/top_model/abp_output.txt");
     struct oss_sink_provider{
         static std::ostream& sink(){          
             return out_data;
