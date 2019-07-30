@@ -38,10 +38,10 @@ build/message.o:
 # TO CLEAN ALL
 clean: clean_simulation clean_test
 
-#TO CLEAN SIMULATION ONLY
+# TO CLEAN SIMULATION ONLY
 clean_simulation:
 	rm -f bin/top_model/*.exe  build/top_model/*.o build/message.o *~ 
 
-#TO CLEAN TEST ONLY
+# TO CLEAN TEST ONLY
 clean_test:
 	rm -f bin/test/*.exe build/test/*.o build/message.o *~ 

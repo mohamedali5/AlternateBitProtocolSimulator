@@ -8,17 +8,20 @@ README.txt
 
 alternatebitprotocol.doc
 
-bin [This folde contains all .exe files generated for the project]
+bin [This folder contains all .exe files generated for the project]
+	test [This folder contains all .exe files generated for testing only]
+		RECEIVER_TEST.exe
+		SENDER_TEST.exe
+		SUBNET_TEST.exe
+	top_model [This folder contains all .exe files generated for simulator only]
 	ABP.exe
-	RECEIVER_TEST.exe
-	SENDER_TEST.exe
-	SUBNET_TEST.exe
-
 build [This folde contains all .o files generated for the project]
-	main.o
-	main_receiver.o
-	main_sender.o
-	main_subnet.o
+	top_model [This folder contains all .o files generated for simulator only]
+		main.o
+	test [This folder contains all .o files generated for testing only]
+		main_receiver.o
+		main_sender.o
+		main_subnet.o
 	message.o
 	
 data [This folder contains some data for testing the project and some simulator outputs]
@@ -89,10 +92,10 @@ test [This folder the unit test for the different include files]
 	1 - Open the terminal. Press in your keyboard Ctrl+Alt+t
 	2 - Set the command prompt in the AlternateBitProtocolSimulator folder. To do so, type in the terminal the path to this folder.
 		Example: cd ../../AlternateBitProtocolSimulator
-	3 - To compile the project, type in the terminal:
+	3 - To compile the whole project, type in the terminal:
 		make clean; make all
 	4 - To run the simulation, type in the terminal "./NAME_OF_THE_COMPILED_FILE NAME_OF_THE_INPUT_FILE". For this test you need to type:
-		./bin/ABP input_abp_1.txt
+		./bin/top_model/ABP data/top_model/input_abp_1.txt
 	5 - To check the output of the simulation, open  "abp_output.txt" present in data/top_model folder.
 	6 - To execute the simulator with different inputs
 		6.1. Create new .txt files with the same structure as input_abp_0.txt or input_abp_1.txt
@@ -100,7 +103,12 @@ test [This folder the unit test for the different include files]
 		6.3. If you want to keep the output, rename abp_output.txt. To do so, type in the terminal: "mv abp_output.txt NEW_NAME"
 			Example: mv data/top_model/abp_output.txt data/top_model/abp_output_0.txt
 	7 - To run the subnet test, type in the terminal "./NAME_OF_THE_COMPILED_FILE". For this specific test you need to type:
-			./bin/SUBNET
+			./bin/test/SUBNET
 		7.1. To check the output of the test, open  "test/data/subnet_test_output.txt"
 	8 - To run receiver and sender tests, the steps are analogous to 7
+	9 - User also have option to compile simulator or testing part alone by using the following commands.
+		make clean_simulation; make simulation
+		make clean_test; make test
+	10 -To run simulation, refer to steps 4 to 6.
+	11 -To run tests, refer to steps 7 to 8.
 
