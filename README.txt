@@ -84,9 +84,9 @@ test [This folder the unit test for the different include files]
 0 - alternatebitprotocol.doc contains the explanation of this simulator
 
 1 - Update include paths in all the makefiles in this folder and subfolders. You need to update the following lines:
-	INCLUDECADMIUM=-I ../../cadmium/include
+		INCLUDECADMIUM=-I ../../cadmium/include
     Update the relative path to cadmium/include from the folder where the makefile is. You need to take into account where you copied the folder during the installation process
-	Example: INCLUDECADMIUM=-I ../../cadmium/include
+		Example: INCLUDECADMIUM=-I ../../cadmium/include
 			
 2 - Run the simulator and unit tests
 	1 - Open the terminal. Press in your keyboard Ctrl+Alt+t
@@ -103,9 +103,9 @@ test [This folder the unit test for the different include files]
 		6.3. If you want to keep the output, rename abp_output.txt. To do so, type in the terminal: "mv abp_output.txt NEW_NAME"
 			Example: mv data/top_model/abp_output.txt data/top_model/abp_output_0.txt
 	7 - To run the subnet test, type in the terminal "./NAME_OF_THE_COMPILED_FILE". For this specific test you need to type:
-			./bin/test/SUBNET_TEST
+		/bin/test/SUBNET_TEST
 		7.1. To check the output of the test, open  "test/data/subnet_test_output.txt"
-	8 - To run receiver and sender tests, the steps are analogous to 7
+	8 - To run receiver and sender tests, the steps are analogous to 7.
 	9 - User also have option to compile simulator or testing part alone by using the following commands.
 		make clean_simulation; make simulation
 		make clean_test; make test
