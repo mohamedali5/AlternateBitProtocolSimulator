@@ -30,16 +30,11 @@ using namespace std;
 //Port definition
 //changed name of structure
 struct sender_defs{
-    struct packetSentOut : public out_port<message_t>{
-    };
-    struct ackReceivedOut : public out_port<message_t>{
-    };
-    struct dataOut : public out_port<message_t>{
-    };
-    struct controlIn : public in_port<message_t>{
-    };
-    struct ackIn : public in_port<message_t>{
-    };
+    struct packetSentOut : public out_port<message_t> {};
+    struct ackReceivedOut : public out_port<message_t> {};
+    struct dataOut : public out_port<message_t> {};
+    struct controlIn : public in_port<message_t> {};
+    struct ackIn : public in_port<message_t> {};
 };
 
 template<typename TIME>
@@ -70,8 +65,12 @@ class Sender{
     }; 
     state_type state;
     // ports definition
-    using input_ports = std::tuple<typename defs::controlIn, typename defs::ackIn>;
-    using output_ports = std::tuple<typename defs::packetSentOut, typename defs::ackReceivedOut, typename defs::dataOut>;
+    using input_ports = std::tuple<typename defs::controlIn, 
+                                   typename defs::ackIn>;
+
+    using output_ports = std::tuple<typename defs::packetSentOut, 
+                                    typename defs::ackReceivedOut, 
+                                    typename defs::dataOut>;
 
     // internal transition
     void internal_transition(){
@@ -104,8 +103,11 @@ class Sender{
     }
 
     // external transition
-    void external_transition(TIME e, typename make_message_bags<input_ports>::type mbs){ 
-        if((get_messages<typename defs::controlIn>(mbs).size()+get_messages<typename defs::ackIn>(mbs).size())>1){
+    void external_transition(TIME e, 
+                             typename make_message_bags<input_ports>::type mbs){ 
+
+        if((get_messages<typename defs::controlIn>(mbs).size()+
+            get_messages<typename defs::ackIn>(mbs).size())>1){
             assert(false && "one message per time uniti");
         }
         for(const auto &x : get_messages<typename defs::controlIn>(mbs)){
@@ -144,7 +146,8 @@ class Sender{
     }
 
     // confluence transition
-    void confluence_transition(TIME e, typename make_message_bags<input_ports>::type mbs){
+    void confluence_transition(TIME e, 
+                               typename make_message_bags<input_ports>::type mbs){
         internal_transition();
         external_transition(TIME(), std::move(mbs));
     }
@@ -173,7 +176,8 @@ class Sender{
         return state.next_internal;
     }
 
-    friend std::ostringstream& operator<<(std::ostringstream& os, const typename Sender<TIME>::state_type& i){
+    friend std::ostringstream& operator<<(std::ostringstream& os, 
+                                          const typename Sender<TIME>::state_type& i){
         os << "packet_num: " << i.packet_num << " & total_packet_num: " << i.total_packet_num; 
         return os;
     }

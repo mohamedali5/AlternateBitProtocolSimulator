@@ -31,10 +31,8 @@ using namespace std;
 //Port definition
 //changed name of structure
 struct subnet_defs{
-    struct out : public out_port<message_t>{
-    };
-    struct in : public in_port<message_t>{
-    };
+    struct out : public out_port<message_t> {};
+    struct in : public in_port<message_t> {};
 };
 //This is a meta-model, it should be overloaded for declaring the "id" parameter
 template<typename TIME>
@@ -66,7 +64,8 @@ class Subnet{
     }
 
     // external transition
-    void external_transition(TIME e, typename make_message_bags<input_ports>::type mbs){ 
+    void external_transition(TIME e, 
+                             typename make_message_bags<input_ports>::type mbs){ 
         state.index ++;
         if(get_messages<typename defs::in>(mbs).size()>1){
             assert(false && "One message at a time");  
@@ -78,7 +77,8 @@ class Subnet{
     }
 
     // confluence transition
-    void confluence_transition(TIME e, typename make_message_bags<input_ports>::type mbs){
+    void confluence_transition(TIME e, 
+                               typename make_message_bags<input_ports>::type mbs){
         internal_transition();
         external_transition(TIME(), std::move(mbs));
     }
@@ -100,7 +100,8 @@ class Subnet{
         std::normal_distribution<double> distribution(3.0, 1.0); 
         TIME next_internal;
         if (state.transmiting){
-            std::initializer_list<int> time = {0, 0, static_cast < int > (round(distribution(generator)))};
+            std::initializer_list<int> time = {0, 0, 
+                                               static_cast < int > (round(distribution(generator)))};
             // time is hour min and second
             next_internal = TIME(time);
         }
@@ -110,7 +111,8 @@ class Subnet{
         return next_internal;
     }
 
-    friend std::ostringstream& operator<<(std::ostringstream& os, const typename Subnet<TIME>::state_type& i){
+    friend std::ostringstream& operator<<(std::ostringstream& os, 
+                                          const typename Subnet<TIME>::state_type& i){
         os << "index: " << i.index << " & transmiting: " << i.transmiting; 
         return os;
     }
