@@ -17,7 +17,7 @@
 #include "../../lib/vendor/NDTime.hpp"
 #include "../../lib/vendor/iestream.hpp"
 #include "../../include/data_structures/message.hpp"
-#include "../../include/atomics/senderCadmium.hpp"
+#include "../../include/atomics/sender_cadmium.hpp"
 
 
 

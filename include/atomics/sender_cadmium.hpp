@@ -42,11 +42,11 @@ class Sender{
     using defs = sender_defs; // putting definitions in context
     public:
     //Parameters to be overwriten when instantiating the atomic model
-    TIME   preparation_time;
+    TIME   PREPARATION_TIME;
     TIME   timeout;
     // default constructor
     Sender() noexcept{
-        preparation_time = TIME("00:00:10");
+        PREPARATION_TIME = TIME("00:00:10");
         timeout = TIME("00:00:20");
         state.alt_bit = 0;
         state.next_internal = std::numeric_limits<TIME>::infinity();
@@ -81,7 +81,7 @@ class Sender{
                 state.alt_bit = (state.alt_bit + 1) % 2;
                 state.sending = true;
                 state.model_active = true; 
-                state.next_internal = preparation_time;   
+                state.next_internal = PREPARATION_TIME;   
             } 
             else{
                 state.model_active = false;
@@ -97,7 +97,7 @@ class Sender{
             else{
                 state.sending = true;
                 state.model_active = true;
-                state.next_internal = preparation_time;    
+                state.next_internal = PREPARATION_TIME;    
             } 
         }   
     }
@@ -119,7 +119,7 @@ class Sender{
                     state.sending = true;
                     state.alt_bit = state.packet_num % 2;  //set initial alt_bit
                     state.model_active = true;
-                    state.next_internal = preparation_time;
+                    state.next_internal = PREPARATION_TIME;
                 }
                 else{
                     if(state.next_internal != std::numeric_limits<TIME>::infinity()){
