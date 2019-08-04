@@ -38,9 +38,9 @@ doc [This folder contains documentaion files for the project]
 
 include [This folder contains the header files used in the project]
 	atomics [This folder contains the header files]
-		receiverCadmium.hpp
-		senderCadmium.hpp
-		subnetCadmium.hpp
+		receiver_cadmium.hpp
+		sender_cadmium.hpp
+		subnet_cadmium.hpp
 	data_structures [This folder contains the header file for data structures used in the project]
 		message.hpp
 
