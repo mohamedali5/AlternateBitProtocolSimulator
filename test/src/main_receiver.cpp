@@ -108,7 +108,8 @@ int main() {
     /********************************************/
 
     std::shared_ptr<cadmium::dynamic::modeling::model> receiver1 = 
-    cadmium::dynamic::translate::make_dynamic_atomic_model<Receiver, TIME>("receiver1");
+    cadmium::dynamic::translate::make_dynamic_atomic_model<Receiver, 
+    TIME>("receiver1");
 
 
     /************************/

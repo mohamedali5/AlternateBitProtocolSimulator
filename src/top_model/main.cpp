@@ -57,7 +57,8 @@ class ApplicationGen : public iestream_input<message_t,T>{
 int main(int argc, char ** argv){
 
     if (argc < 2){
-        cout << "you are using this program with wrong parameters.The program should be invoked as follow:";
+        cout << "you are using this program with wrong parameters."
+        "The program should be invoked as follow:";
         cout << argv[0] << " path to the input file " << endl;
         return 1; 
     }
@@ -112,9 +113,9 @@ int main(int argc, char ** argv){
     const char * i_input_data_control = input_data_control.c_str();
 
     std::shared_ptr<cadmium::dynamic::modeling::model> generator_con = 
-                                                                       cadmium::dynamic::translate::make_dynamic_atomic_model<ApplicationGen, 
-                                                                       TIME, 
-                                                                       const char* >("generator_con" , std::move(i_input_data_control));
+                    cadmium::dynamic::translate::make_dynamic_atomic_model<ApplicationGen, 
+                    TIME, 
+                    const char* >("generator_con" , std::move(i_input_data_control));
 
 
     /********************************************/
@@ -122,27 +123,27 @@ int main(int argc, char ** argv){
     /********************************************/
 
     std::shared_ptr<cadmium::dynamic::modeling::model> sender1 = 
-                                                                 cadmium::dynamic::translate::make_dynamic_atomic_model<Sender,
-                                                                 TIME>("sender1");
+                    cadmium::dynamic::translate::make_dynamic_atomic_model<Sender,
+                    TIME>("sender1");
 
     /********************************************/
     /****** RECIEVER *******************/
     /********************************************/
 
     std::shared_ptr<cadmium::dynamic::modeling::model> receiver1 = 
-                                                                   cadmium::dynamic::translate::make_dynamic_atomic_model<Receiver, 
-                                                                   TIME>("receiver1");
+                    cadmium::dynamic::translate::make_dynamic_atomic_model<Receiver, 
+                    TIME>("receiver1");
 
     /********************************************/
     /****** SUBNET *******************/
     /********************************************/
 
     std::shared_ptr<cadmium::dynamic::modeling::model> subnet1 = 
-                                                                 cadmium::dynamic::translate::make_dynamic_atomic_model<Subnet, 
-                                                                 TIME>("subnet1");
+                    cadmium::dynamic::translate::make_dynamic_atomic_model<Subnet, 
+                    TIME>("subnet1");
     std::shared_ptr<cadmium::dynamic::modeling::model> subnet2 = 
-                                                                 cadmium::dynamic::translate::make_dynamic_atomic_model<Subnet, 
-                                                                 TIME>("subnet2");
+                    cadmium::dynamic::translate::make_dynamic_atomic_model<Subnet, 
+                    TIME>("subnet2");
 
     /************************/
     /*******NETWORK********/
@@ -160,15 +161,15 @@ int main(int argc, char ** argv){
     };
     cadmium::dynamic::modeling::ICs ics_Network = {};
     std::shared_ptr<cadmium::dynamic::modeling::coupled<TIME>> NETWORK = 
-                                                                         std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>(
-                                                                         "Network", 
-                                                                         submodels_Network, 
-                                                                         iports_Network, 
-                                                                         oports_Network, 
-                                                                         eics_Network, 
-                                                                         eocs_Network, 
-                                                                         ics_Network 
-                                                                         );
+    std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>(
+                                                                "Network", 
+                                                                submodels_Network, 
+                                                                iports_Network, 
+                                                                oports_Network, 
+                                                                eics_Network, 
+                                                                eocs_Network, 
+                                                                ics_Network 
+                                                                );
 
     /************************/
     /*******ABPSimulator********/
@@ -190,15 +191,15 @@ int main(int argc, char ** argv){
         cadmium::dynamic::translate::make_IC<outp_1, receiver_defs::in>("Network","receiver1")
     };
     std::shared_ptr<cadmium::dynamic::modeling::coupled<TIME>> ABPSimulator = 
-                                                                              std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>(
-                                                                              "ABPSimulator", 
-                                                                              submodels_ABPSimulator, 
-                                                                              iports_ABPSimulator, 
-                                                                              oports_ABPSimulator, 
-                                                                              eics_ABPSimulator, 
-                                                                              eocs_ABPSimulator, 
-                                                                              ics_ABPSimulator 
-                                                                              );
+    std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>(
+                                                                "ABPSimulator", 
+                                                                submodels_ABPSimulator, 
+                                                                iports_ABPSimulator, 
+                                                                oports_ABPSimulator, 
+                                                                eics_ABPSimulator, 
+                                                                eocs_ABPSimulator, 
+                                                                ics_ABPSimulator 
+                                                                );
 
 
     /************************/
@@ -213,18 +214,19 @@ int main(int argc, char ** argv){
         cadmium::dynamic::translate::make_EOC<outp_pack,outp_ack>("ABPSimulator")
     };
     cadmium::dynamic::modeling::ICs ics_TOP = {
-        cadmium::dynamic::translate::make_IC<iestream_input_defs<message_t>::out,inp_control>("generator_con","ABPSimulator")
+        cadmium::dynamic::translate::make_IC<iestream_input_defs<message_t>::out,
+        inp_control>("generator_con","ABPSimulator")
     };
     std::shared_ptr<cadmium::dynamic::modeling::coupled<TIME>> TOP = 
-                                                                     std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>(
-                                                                     "TOP", 
-                                                                     submodels_TOP, 
-                                                                     iports_TOP, 
-                                                                     oports_TOP, 
-                                                                     eics_TOP, 
-                                                                     eocs_TOP, 
-                                                                     ics_TOP 
-                                                                     );
+    std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>(
+                                                                "TOP", 
+                                                                submodels_TOP, 
+                                                                iports_TOP, 
+                                                                oports_TOP, 
+                                                                eics_TOP, 
+                                                                eocs_TOP, 
+                                                                ics_TOP 
+                                                                );
 
     ///****************////
 
