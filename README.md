@@ -25,70 +25,70 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
 
 ## SOURCE FILES ORGANIZATION
 ---
-**bin [This folder contains all .exe files generated for the project]**
+##### bin [This folder contains all .exe files generated for the project]
 	1. test [This folder contains all .exe files generated for testing only]
-		- RECEIVER_TEST.exe
-		- SENDER_TEST.exe
-		- SUBNET_TEST.exe
+		-	RECEIVER_TEST.exe
+		-	SENDER_TEST.exe
+		-	SUBNET_TEST.exe
 	2. top_model [This folder contains all .exe files generated for simulator only]
-		- ABP.exe
-**build [This folder contains all .o files generated for the project]**
+		-	ABP.exe
+##### build [This folder contains all .o files generated for the project]
 	1. top_model [This folder contains all .o files generated for simulator only]
-		- main.o
+		-	main.o
 	2. test [This folder contains all .o files generated for testing only]
-		- main_receiver.o
-		- main_sender.o
-		- main_subnet.o
+		-	main_receiver.o
+		-	main_sender.o
+		-	main_subnet.o
 	3. message.o
 	
-**data [This folder contains some data for testing the project and some simulator outputs]**
+##### data [This folder contains some data for testing the project and some simulator outputs]
 	1. top_model [This folder contains some data for testing and some simulator outputs]
-		- input_abp_0.txt
-		- input_abp_1.txt
-		- abp_output_0.txt
-		- abp_output_1.txt
+		-	input_abp_0.txt
+		-	input_abp_1.txt
+		-	abp_output_0.txt
+		-	abp_output_1.txt
 
-**doc [This folder contains documentaion files for the project]**
+##### doc [This folder contains documentaion files for the project]
 	1. alternatebitprot.pdf
 	2. Cadmium_Documentation_Ubuntu.pdf
 	3. Cadmium_Windows.pdf
 
-**include [This folder contains the header files used in the project]**
+##### include [This folder contains the header files used in the project]
 	1. atomics [This folder contains the header files]
-		- receiver_cadmium.hpp
-		- sender_cadmium.hpp
-		- subnet_cadmium.hpp
+		-	receiver_cadmium.hpp
+		-	sender_cadmium.hpp
+		-	subnet_cadmium.hpp
 	2. data_structures [This folder contains the header file for data structures used in the project]
-		- message.hpp
+		-	message.hpp
 
-**lib [This folder contains the 3rd party files header files and functionalties used in the project]**
+##### lib [This folder contains the 3rd party files header files and functionalties used in the project]
 	1. cadmium [This folder contains cadmium functionalities]
 		see folder contents for more information
 	2. DESTimes [This folder contains DESTimes functionalities]
 		see folder contents for more information
 	3. vendor [This folder contains 3rd party header files needed in the project]
-		- iestream.hpp
-		- NDTime.hpp
+		-	iestream.hpp
+		-	NDTime.hpp
 
-**src [This folder contains source code of the project]**
+##### src [This folder contains source code of the project]
 	1. data_structures [This folder contains the data structures used in the project]
-		- message.cpp
+		-	message.cpp
 	2. top_model [This folder contains source code for the Alternate Bit Protocol simulator]	
-		- main.cpp
+		-	main.cpp
 
-**test [This folder the unit test for the different include files]**
+##### test [This folder the unit test for the different include files]
 	1. src [This folder contains the source code of the receiver, sender and subnet]
-		- main_receiver.cpp
-		- main_sender.cpp
-		- main_subnet.cpp
+		-	main_receiver.cpp
+		-	main_sender.cpp
+		-	main_subnet.cpp
 	2. data [This folder contains some data for performin unit test of the receiver, sender and subnet]
-		- receiver_input_test.txt
-		- receiver_test_output.txt
-		- sender_input_test_ack_In.txt
-		- sender_input_test_control_In.txt
-		- sender_test_output.txt
-		- subnet_input_test.txt
-		- subnet_test_output.txt
+		- 	receiver_input_test.txt
+		- 	receiver_test_output.txt
+		- 	sender_input_test_ack_In.txt
+		-	sender_input_test_control_In.txt
+		- 	sender_test_output.txt
+		- 	subnet_input_test.txt
+		- 	subnet_test_output.txt
 	3. include [This folder contains the header files used for unit testing]
 		will be updated in future
 
@@ -96,13 +96,13 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
 ---
 
 ## STEPS TO RUN THE SIMULATOR
-
-0. alternatebitprot.pdf contains the explanation of this simulator
+---
+alternatebitprot.pdf contains the explanation of this simulator.
 
 1. Update include paths in all the makefiles in this folder and subfolders. You need to update the following lines:
 	
-	1.1 INCLUDECADMIUM=-I ../../cadmium/include
-    1.2 Update the relative path to cadmium/include from the folder where the makefile is. You need to take into account where you copied the folder during the installation process
+	1.1. INCLUDECADMIUM=-I ../../cadmium/include
+    1.2. Update the relative path to cadmium/include from the folder where the makefile is. You need to take into account where you copied the folder during the installation process
 		Example: **INCLUDECADMIUM=-I ../../cadmium/include**
 			
 2. Run the simulator and unit tests
