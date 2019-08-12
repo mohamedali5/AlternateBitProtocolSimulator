@@ -120,14 +120,14 @@ alternatebitprot.pdf contains the explanation of this simulator.
 	2.5  To check the output of the simulation, open  "**abp_output.txt**" present in data/top_model folder. </br>
 
 	2.6  To execute the simulator with different inputs </br>
-		2.6.1 Create new .txt files with the same structure as input_abp_0.txt or input_abp_1.txt </br>
-		2.6.2 Run the simulator using the instructions in step 4 </br>
-		2.6.3 If you want to keep the output, rename abp_output.txt. To do so, type in the terminal: "**mv abp_output.txt NEW_NAME**" </br>
+</t>	2.6.1 Create new .txt files with the same structure as input_abp_0.txt or input_abp_1.txt </br>
+</t>	2.6.2 Run the simulator using the instructions in step 4 </br>
+</t>    2.6.3 If you want to keep the output, rename abp_output.txt. To do so, type in the terminal: "**mv abp_output.txt NEW_NAME**" </br>
 			Example: **mv data/top_model/abp_output.txt data/top_model/abp_output_0.txt** </br>
 
 	2.7  To run the subnet test, type in the terminal "**./NAME_OF_THE_COMPILED_FILE**". For this specific test you need to type:
 		**/bin/test/SUBNET_TEST** </br>
-		2.7.1 To check the output of the test, open  "**test/data/subnet_test_output.txt**" </br>
+</t>    2.7.1 To check the output of the test, open  "**test/data/subnet_test_output.txt**" </br>
 
 	2.8  To run receiver and sender tests, the steps are analogous to 7. </br>
 
@@ -136,6 +136,6 @@ alternatebitprot.pdf contains the explanation of this simulator.
 		**make clean_test; make test** </br>
 
 	2.10 To run simulation, refer to steps 4 to 6. </br>
-	
+
 	2.11 To run tests, refer to steps 7 to 8. </br>
 
