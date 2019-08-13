@@ -4,7 +4,7 @@
  * This file prepares application generator which receives
  * input as filepath, stores output and generates
  * all the log data using the cadmium and library. 
- * It runs with respect to input provided bye input file and 
+ * It runs with respect to input provided by input file and 
  * runs simulation until time 04:00:00:000 is reached.
  *
  */
