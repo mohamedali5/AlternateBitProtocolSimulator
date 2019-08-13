@@ -103,37 +103,37 @@ alternatebitprot.pdf contains the explanation of this simulator.
 	
 	1.1 INCLUDECADMIUM=-I ../../cadmium/include </br>
     1.2 Update the relative path to cadmium/include from the folder where the makefile is. You need to take into account where you copied the folder during the installation process </br>
-		Example: **INCLUDECADMIUM=-I ../../cadmium/include**
+>		Example: INCLUDECADMIUM=-I ../../cadmium/include
 			
 2. Run the simulator and unit tests
 	2.1  Open the terminal. Press in your keyboard Ctrl+Alt+t </br>
 
 	2.2  Set the command prompt in the AlternateBitProtocolSimulator folder. To do so, type in the terminal the path to this folder. </br>
-		Example: **cd ../../AlternateBitProtocolSimulator** </br>
+>		Example: cd ../../AlternateBitProtocolSimulator </br>
 
 	2.3  To compile the whole project, type in the terminal: </br>
-		**make clean; make all** </br>
+>		make clean; make all </br>
 
 	2.4  To run the simulation, type in the terminal "**./NAME_OF_THE_COMPILED_FILE NAME_OF_THE_INPUT_FILE**". For this test you need to type: </br>
-		**./bin/top_model/ABP data/top_model/input_abp_1.txt** </br>
+>		./bin/top_model/ABP data/top_model/input_abp_1.txt </br>
 
 	2.5  To check the output of the simulation, open  "**abp_output.txt**" present in data/top_model folder. </br>
 
 	2.6  To execute the simulator with different inputs </br>
-</t>	2.6.1 Create new .txt files with the same structure as input_abp_0.txt or input_abp_1.txt </br>
-</t>	2.6.2 Run the simulator using the instructions in step 4 </br>
-</t>    2.6.3 If you want to keep the output, rename abp_output.txt. To do so, type in the terminal: "**mv abp_output.txt NEW_NAME**" </br>
-			Example: **mv data/top_model/abp_output.txt data/top_model/abp_output_0.txt** </br>
+		2.6.1 Create new .txt files with the same structure as input_abp_0.txt or input_abp_1.txt </br>
+		2.6.2 Run the simulator using the instructions in step 4 </br>
+    	2.6.3 If you want to keep the output, rename abp_output.txt. To do so, type in the terminal: "**mv abp_output.txt NEW_NAME**" </br>
+>			Example: mv data/top_model/abp_output.txt data/top_model/abp_output_0.txt </br>
 
 	2.7  To run the subnet test, type in the terminal "**./NAME_OF_THE_COMPILED_FILE**". For this specific test you need to type:
 		**/bin/test/SUBNET_TEST** </br>
-</t>    2.7.1 To check the output of the test, open  "**test/data/subnet_test_output.txt**" </br>
+    	2.7.1 To check the output of the test, open  "**test/data/subnet_test_output.txt**" </br>
 
 	2.8  To run receiver and sender tests, the steps are analogous to 7. </br>
 
 	2.9  User also have option to compile simulator or testing part alone by using the following commands. </br>
-		**make clean_simulation; make simulation** </br>
-		**make clean_test; make test** </br>
+>		**make clean_simulation; make simulation** </br>
+>		**make clean_test; make test** </br>
 
 	2.10 To run simulation, refer to steps 4 to 6. </br>
 
