@@ -1,3 +1,17 @@
+
+/** \brief Main source file
+ * 
+ * Initializes COUPLEDs by setting the input and output ports.
+ * Contains main function which is invoked to start the ABP simulation.
+ * Initializes the different submodules of the ABP Simulator:
+ *      1- Application Generator
+ *      2- Sender
+ *      3- Receiver
+ *      4- Subnet
+ *      5- Network
+ */
+
+
 #include <iostream>
 #include <chrono>
 #include <algorithm>
@@ -54,6 +68,20 @@ class ApplicationGen : public iestream_input<message_t,T>{
 };
 
 
+/**\brief  Main function
+ * 
+ * Initializes the different submodules of the ABP Simulator:
+ *      1- Application Generator
+ *      2- Sender
+ *      3- Receiver
+ *      4- Subnet
+ *      5- Network
+
+ * Reads input from file, runs ABP Simulator, then prints output to file
+ * Prints information about the simulator's time metric
+ * @param argc Integer argument - count of the command line arguments
+ * @param argv Argument vector - the command line arguments
+ */
 int main(int argc, char ** argv){
 
     if (argc < 2){
@@ -106,9 +134,9 @@ int main(int argc, char ** argv){
 
 
     /*******************************************/
-    /********************************************/
-    /****** APPLICATION GENERATOR *******************/
-    /********************************************/
+    /*******************************************/
+    /****** APPLICATION GENERATOR **************/
+    /*******************************************/
     string input_data_control = argv[1];
     const char * i_input_data_control = input_data_control.c_str();
 
@@ -119,7 +147,7 @@ int main(int argc, char ** argv){
 
 
     /********************************************/
-    /****** SENDER *******************/
+    /****** SENDER ******************************/
     /********************************************/
 
     std::shared_ptr<cadmium::dynamic::modeling::model> sender1 = 
@@ -127,7 +155,7 @@ int main(int argc, char ** argv){
                     TIME>("sender1");
 
     /********************************************/
-    /****** RECIEVER *******************/
+    /****** RECIEVER ****************************/
     /********************************************/
 
     std::shared_ptr<cadmium::dynamic::modeling::model> receiver1 = 
@@ -135,7 +163,7 @@ int main(int argc, char ** argv){
                     TIME>("receiver1");
 
     /********************************************/
-    /****** SUBNET *******************/
+    /****** SUBNET ******************************/
     /********************************************/
 
     std::shared_ptr<cadmium::dynamic::modeling::model> subnet1 = 
@@ -145,9 +173,9 @@ int main(int argc, char ** argv){
                     cadmium::dynamic::translate::make_dynamic_atomic_model<Subnet, 
                     TIME>("subnet2");
 
-    /************************/
-    /*******NETWORK********/
-    /************************/
+    /********************************************/
+    /*******NETWORK******************************/
+    /********************************************/
     cadmium::dynamic::modeling::Ports iports_Network = {typeid(inp_1),typeid(inp_2)};
     cadmium::dynamic::modeling::Ports oports_Network = {typeid(outp_1),typeid(outp_2)};
     cadmium::dynamic::modeling::Models submodels_Network = {subnet1, subnet2};
@@ -171,9 +199,9 @@ int main(int argc, char ** argv){
                                                                 ics_Network 
                                                                 );
 
-    /************************/
-    /*******ABPSimulator********/
-    /************************/
+    /********************************************/
+    /*******ABP SIMULATOR************************/
+    /********************************************/
     cadmium::dynamic::modeling::Ports iports_ABPSimulator = {typeid(inp_control)};
     cadmium::dynamic::modeling::Ports oports_ABPSimulator = {typeid(outp_ack),typeid(outp_pack)};
     cadmium::dynamic::modeling::Models submodels_ABPSimulator = {sender1, receiver1,NETWORK};
@@ -202,9 +230,9 @@ int main(int argc, char ** argv){
                                                                 );
 
 
-    /************************/
-    /*******TOP MODEL********/
-    /************************/
+    /********************************************/
+    /*******TOP MODEL****************************/
+    /********************************************/
     cadmium::dynamic::modeling::Ports iports_TOP = {};
     cadmium::dynamic::modeling::Ports oports_TOP = {typeid(outp_pack),typeid(outp_ack)};
     cadmium::dynamic::modeling::Models submodels_TOP = {generator_con, ABPSimulator};
@@ -228,22 +256,27 @@ int main(int argc, char ** argv){
                                                                 ics_TOP 
                                                                 );
 
-    ///****************////
+    /********************************************/
+    /*******RUN TIME*****************************/
+    /********************************************/
 
     auto elapsed1 = std::chrono::duration_cast<std::chrono::duration<double, 
-                    std::ratio<1>>>(hclock::now() - start).count();
+                    std::ratio<1>>>(hclock::now() - start).count(); ///< Run-time to create model
     cout << "Model Created. Elapsed time: " << elapsed1 << "sec" << endl;
     
     cadmium::dynamic::engine::runner<NDTime, logger_top> r(TOP, {0});
     elapsed1 = std::chrono::duration_cast<std::chrono::duration<double, 
-               std::ratio<1>>>(hclock::now() - start).count();
+               std::ratio<1>>>(hclock::now() - start).count(); ///< Run-time to create runner
+
     cout << "Runner Created. Elapsed time: " << elapsed1 << "sec" << endl;
 
     cout << "Simulation starts" << endl;
 
     r.run_until(NDTime("04:00:00:000"));
+
     auto elapsed = std::chrono::duration_cast<std::chrono::duration<double, 
                    std::ratio<1>>>(hclock::now() - start).count();
+                   ///< Run-time of simulation
     cout << "Simulation took:" << elapsed << "sec" << endl;
     return 0;
 }
