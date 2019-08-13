@@ -1,3 +1,13 @@
+/** \This main file implements the operation of subnet file
+ *
+ * This file prepares application generator which takes the
+ * input as filepath, stores output and generates
+ * all the log data using the cadmium and library. 
+ * It runs with respect to input provided bye input file and 
+ * runs simulation until time 04:00:00:000 is reached.
+ *
+ */
+
 #include <iostream>
 #include <chrono>
 #include <algorithm>
@@ -26,36 +36,67 @@ using hclock=chrono::high_resolution_clock;
 using TIME = NDTime;
 
 
-/***** SETING INPUT PORTS FOR COUPLEDs *****/
+/**
+ * Setting input ports for messages
+ */
 struct inp_in : public cadmium::in_port<message_t> {};
 
-/***** SETING OUTPUT PORTS FOR COUPLEDs *****/
+/**
+ * Setting output ports or messages
+ */
 struct outp_out: public cadmium::out_port<message_t> {};
 
-/********************************************/
-/****** APPLICATION GENERATOR *******************/
-/********************************************/
+
+/**
+ * This is application generator class takes file path
+ * parameter and waits for input
+ * @tParam message T
+ */
 template<typename T>
 class ApplicationGen : public iestream_input<message_t,T> {
     public:
         ApplicationGen() = default;
-        ApplicationGen(const char* file_path) : iestream_input<message_t,T>(file_path) {}
+
+        /**
+         * A parameterized contructor for class application generator 
+         * takes input path of the file that containes the input for
+         * the application to run
+         * @param file_path
+         */
+        ApplicationGen(const char* file_path) : 
+                iestream_input<message_t,T>(file_path) {}
 };
 
 
 int main() {
 
-    auto start = hclock::now(); //to measure simulation execution time
+    //to measure simulation execution time
+    auto start = hclock::now(); 
 
-    /*************** Loggers *******************/
-    //updated relative path --Syed Omar
+    /**
+     * To generate messages and operation logs which are being passed
+     * during execution time of this application and storing them
+     * in the receiver_test_output file as indicated out_data.
+     */
     static std::ofstream out_data("test/data/subnet_test_output.txt");
+  
+
+    /**
+     * This is a common sink provider structure 
+     * which calls the ostream that is the output stream
+     * and it return data stored in the file
+     */
     struct oss_sink_provider{
         static std::ostream& sink() {          
             return out_data;
         }
     };
 
+    /**
+     * Loggers definition of cadmium to call source loggers strcture
+     * to generate the log files in a formatted mannar and to store
+     * them in variables and to be logged to the file
+     */
     using info = cadmium::logger::logger<cadmium::logger::logger_info, 
                  cadmium::dynamic::logger::formatter<TIME>, 
                  oss_sink_provider>;
@@ -88,53 +129,80 @@ int main() {
     using logger_top = cadmium::logger::multilogger<log_messages, global_time>;
 
 
-    /*******************************************/
-    /********************************************/
-    /****** APPLICATION GENERATOR *******************/
-    /********************************************/
-    //updated relative path --Syed Omar
+    /**
+     * Get input receiver file for execution and
+     * runs the execution for number of input times 
+     */
     string input_data = "test/data/subnet_input_test.txt";
     const char * i_input_data = input_data.c_str();
 
+    /**
+     * Initialized generator which has output file path, Time and 
+     * given input generates the output
+     */
     std::shared_ptr<cadmium::dynamic::modeling::model> generator = 
-    cadmium::dynamic::translate::make_dynamic_atomic_model<ApplicationGen, 
-    TIME, const char* >("generator" , std::move(i_input_data));
+                    cadmium::dynamic::translate::make_dynamic_atomic_model
+                    <ApplicationGen, 
+                     TIME, 
+                     const char* >(
+                                   "generator" ,
+                                    std::move(i_input_data)
+                                   );
 
 
-    /********************************************/
-    /****** SUBNET *******************/
-    /********************************************/
-
+    /**
+     * Identify output data which has been receoved from subnet1
+     */
     std::shared_ptr<cadmium::dynamic::modeling::model> subnet1 = 
     cadmium::dynamic::translate::make_dynamic_atomic_model<Subnet, TIME>("subnet1");
 
 
-    /************************/
-    /*******TOP MODEL********/
-    /************************/
+    /**
+     * Store values in top model operations
+     * which have been performed for a time frame and
+     * then store in output file
+     */
     cadmium::dynamic::modeling::Ports iports_TOP = {};
-    cadmium::dynamic::modeling::Ports oports_TOP = {typeid(outp_out)};
-    cadmium::dynamic::modeling::Models submodels_TOP = {generator, subnet1};
+    cadmium::dynamic::modeling::Ports oports_TOP = {
+        typeid(outp_out)
+    };
+    cadmium::dynamic::modeling::Models submodels_TOP = {
+        generator,
+        subnet1
+    };
     cadmium::dynamic::modeling::EICs eics_TOP = {};
     cadmium::dynamic::modeling::EOCs eocs_TOP = {
-        cadmium::dynamic::translate::make_EOC<subnet_defs::out,outp_out>("subnet1")
+        cadmium::dynamic::translate::make_EOC
+        <subnet_defs::out,
+         outp_out>(
+                   "subnet1"
+                   )
     };
     cadmium::dynamic::modeling::ICs ics_TOP = {
-        cadmium::dynamic::translate::make_IC<iestream_input_defs<message_t>::out,
-        subnet_defs::in>("generator","subnet1")
+        cadmium::dynamic::translate::make_IC
+        <iestream_input_defs<message_t>::out,
+         subnet_defs::in>(
+                          "generator",
+                          "subnet1"
+                          )
     };
     std::shared_ptr<cadmium::dynamic::modeling::coupled<TIME>> TOP = 
     std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>(
-        "TOP", 
-        submodels_TOP, 
-        iports_TOP, 
-        oports_TOP, 
-        eics_TOP, 
-        eocs_TOP, 
-        ics_TOP 
-    );
-
-   ///****************////
+                                                                "TOP", 
+                                                                submodels_TOP, 
+                                                                iports_TOP, 
+                                                                oports_TOP, 
+                                                                eics_TOP, 
+                                                                eocs_TOP, 
+                                                                ics_TOP 
+                                                                );
+  
+    /**
+     * In this model,  Create a model and measure elapsed time form creations in 
+     * seconds. Create runner,  and measure elapsed time form creations in
+     * seconds. Simulation starts and time it took to complete 
+     * the simulation. Simulation is ran until 04:00:00:000 time period.
+     */
 
     auto elapsed1 = std::chrono::duration_cast<std::chrono::duration<double, 
     std::ratio<1>>>(hclock::now() - start).count();
