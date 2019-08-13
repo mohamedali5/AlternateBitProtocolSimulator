@@ -124,13 +124,13 @@ alternatebitprot.pdf contains the explanation of this simulator.
 
 1. Update include paths in all the makefiles in this folder and subfolders. You need to update the following lines:
 
-   1.1 INCLUDECADMIUM=-I ../../cadmium/include 
+   1.1 INCLUDECADMIUM=-I ../../cadmium/include </br>
    1.2 Update the relative path to cadmium/include from the folder where the makefile is. You need to take into account where you copied the folder during the installation process 
 
 > Example: INCLUDECADMIUM=-I ../../cadmium/include
 
-2. Run the simulator and unit tests 
-   2.1  Open the terminal. Press in your keyboard Ctrl+Alt+t
+2. Run the simulator and unit tests </br>
+   2.1  Open the terminal. Press in your keyboard Ctrl+Alt+t </br>
    2.2  Set the command prompt in the AlternateBitProtocolSimulator folder. To do so, type in the terminal the path to this folder.
 
 > Example: cd ../../AlternateBitProtocolSimulator 
