@@ -153,8 +153,8 @@ alternatebitprot.pdf contains the explanation of this simulator.
 
 ```
 2.6  To execute the simulator with different inputs 
-		2.6.1 Create new .txt files with the same structure as input_abp_0.txt or input_abp_1.txt
-		2.6.2 Run the simulator using the instructions in step 4 
+	2.6.1 Create new .txt files with the same structure as input_abp_0.txt or input_abp_1.txt
+	2.6.2 Run the simulator using the instructions in step 2.4 
     	2.6.3 If you want to keep the output, rename abp_output.txt. To do so, type in the terminal: "**mv abp_output.txt NEW_NAME**" 
 ```
 
@@ -165,7 +165,7 @@ alternatebitprot.pdf contains the explanation of this simulator.
 	**/bin/test/SUBNET_TEST** 
 	2.7.1 To check the output of the test, open  "**test/data/subnet_test_output.txt**"
 
-2.8  To run receiver and sender tests, the steps are analogous to 7.
+2.8  To run receiver and sender tests, the steps are analogous to 2.7.
 
 2.9  User also have option to compile simulator or testing part alone by using the following commands.
 ```
@@ -174,7 +174,7 @@ alternatebitprot.pdf contains the explanation of this simulator.
 > **make clean_test; make test** 
 
 ```
-2.10 To run simulation, refer to steps 4 to 6.
+2.10 To run simulation, refer to steps 2.4 to 2.6.
 
-2.11 To run tests, refer to steps 7 to 8.
+2.11 To run tests, refer to steps 2.7 to 2.8.
 ```
