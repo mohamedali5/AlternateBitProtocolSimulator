@@ -133,7 +133,7 @@ class Sender{
     /**
     * External transition function that extract the messages: 
     * if the number of messages is greater than 1
-    * it asserts sending state to flase and concatnate the message
+    * it asserts sending state to false and concatenate the message
     * that only one message is expected per time unit. 
     * It then set the next state based on the current state
     * It also chceck the next internal transtion is not equal to infinity

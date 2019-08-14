@@ -89,7 +89,7 @@ class Subnet{
     /**
     * External transition function that extract the messages: 
     * if the number of messages is greater than 1
-    * it asserts transmitting state to flase and concatenate the message
+    * it asserts transmitting state to false and concatenate the message
     * that only one message is expected per time unit. 
     * It then sets the packet to the message value and 
     * sets the transmitting state to true.
