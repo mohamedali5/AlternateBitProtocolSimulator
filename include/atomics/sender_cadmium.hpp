@@ -158,7 +158,7 @@ class Sender{
                     state.alt_bit = state.packet_num % 2;  //set initial alt_bit
                     state.model_active = true;
                     state.next_internal = PREPARATION_TIME;
-                }else{
+                } else{
                     if(state.next_internal != std::numeric_limits<TIME>::infinity()){
                         state.next_internal = state.next_internal - e;
                     }
@@ -171,7 +171,7 @@ class Sender{
                     state.ack = true;
                     state.sending = false;
                     state.next_internal = TIME("00:00:00");
-                }else{
+                } else{
                     if(state.next_internal != std::numeric_limits<TIME>::infinity()){
                         state.next_internal = state.next_internal - e;
                     }

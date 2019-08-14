@@ -148,8 +148,10 @@ class Subnet{
         std::normal_distribution<double> distribution(3.0, 1.0); 
         TIME next_internal;
         if (state.transmiting){
-            std::initializer_list<int> time = {0, 0, 
-                                               static_cast < int > (round(distribution(generator)))};
+            std::initializer_list<int> time = {0, 
+                                               0, 
+                                               static_cast < int > (round(distribution(generator)))
+                                               };
             // time is hour min and second
             next_internal = TIME(time);
         } else{

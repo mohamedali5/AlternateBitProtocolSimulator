@@ -61,11 +61,11 @@ class ApplicationGen : public iestream_input<message_t,T> {
         /**
          * A parameterized contructor for class application generator 
          * takes input path of the file that containes the input for
-         * the application to run
+         * the to run application
          * @param file_path
          */
         ApplicationGen(const char* file_path) : 
-                iestream_input<message_t,T>(file_path) {
+            iestream_input<message_t,T>(file_path) {
 
         }
 };
@@ -141,15 +141,14 @@ int main() {
 
     /**
      * Initialized generator which has output file path, Time and 
-     * given input generates the output
+     * with given input generates the output
      */
     std::shared_ptr<cadmium::dynamic::modeling::model> generator = 
                     cadmium::dynamic::translate::make_dynamic_atomic_model
                     <ApplicationGen,
                      TIME, 
-                     const char* >(
-                                   "generator" , 
-                                    std::move(i_input_data_control)
+                     const char* >("generator" , 
+                                   std::move(i_input_data_control)
                                    );
 
     /**
@@ -158,14 +157,13 @@ int main() {
     std::shared_ptr<cadmium::dynamic::modeling::model> receiver1 = 
                     cadmium::dynamic::translate::make_dynamic_atomic_model
                     <Receiver, 
-                     TIME>(
-                           "receiver1"
-                           );
+                    TIME>("receiver1"
+                          );
 
 
     /**
-     * Store values in top model operations
-     * which have been performed for a time frame and
+     * Store values of top model operations
+     * which have been performed for each time frame and
      * then store in output file
      */
     cadmium::dynamic::modeling::Ports iports_TOP ={};
@@ -180,17 +178,17 @@ int main() {
     cadmium::dynamic::modeling::EOCs eocs_TOP = {
         cadmium::dynamic::translate::make_EOC
         <receiver_defs::out,
-        outp>(
-              "receiver1"
+        outp>("receiver1"
               )
     };
     cadmium::dynamic::modeling::ICs ics_TOP = {
         cadmium::dynamic::translate::make_IC<iestream_input_defs<message_t>::out,
-        receiver_defs::in>("generator","receiver1")
+        receiver_defs::in>("generator",
+                           "receiver1"
+                           )
     };
     std::shared_ptr<cadmium::dynamic::modeling::coupled<TIME>> TOP = 
-    std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>(
-                                                                "TOP", 
+    std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>("TOP", 
                                                                 submodels_TOP, 
                                                                 iports_TOP, 
                                                                 oports_TOP, 
@@ -199,9 +197,9 @@ int main() {
                                                                 ics_TOP 
                                                                 );
     /**
-     * In this model,  Create a model and measure elapsed time form creations in 
+     * Create a model and measure elapsed  form time of creationd in 
      * seconds. Create runner,  and measure elapsed time form creations in
-     * seconds. Simulation starts and time it took to complete 
+     * seconds. Simulation starts and the time it took to complete 
      * the simulation. Simulation is ran until 04:00:00:000 time period.
      */
 

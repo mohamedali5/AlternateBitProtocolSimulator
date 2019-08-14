@@ -67,7 +67,7 @@ class ApplicationGen : public iestream_input<message_t,T> {
          * @param file_path
          */
         ApplicationGen(const char* file_path) : 
-                iestream_input<message_t,T>(file_path) {}
+            iestream_input<message_t,T>(file_path) {}
 };
 
 
@@ -160,7 +160,7 @@ int main() {
 
     /**
      * Initialized generator acknowledgment which has output file path, 
-     * Time and given input generates the output
+     * Time and with given input generates the output
      */
     std::shared_ptr<cadmium::dynamic::modeling::model> generator_ack = 
                     cadmium::dynamic::translate::make_dynamic_atomic_model
@@ -183,8 +183,8 @@ int main() {
 
 
     /**
-     * Store values in top model operations
-     * which have been performed for a time frame and
+     * Store values of top model operations
+     * which have been performed for each time frame and
      * then store in output file
      */
     cadmium::dynamic::modeling::Ports iports_TOP = {};
@@ -241,11 +241,12 @@ int main() {
                                                                 ics_TOP 
                                                                 );
 
+
     /**
-     * In this model, runner are created and also the time to create
-     * them are measured. Once they are created simulation starts and
-     * the time it took to complete the simulation and simulation is ran until
-     * 04:00:00:000 time.
+     * Create a model and measure elapsed time form creations in 
+     * seconds. Create runner,  and measure elapsed time form creations in
+     * seconds. Simulation starts and the time took to complete 
+     * the simulation. Simulation is ran until 04:00:00:000 time period.
      */
     auto elapsed1 = std::chrono::duration_cast<std::chrono::duration<double, 
     std::ratio<1>>>(hclock::now() - start).count();

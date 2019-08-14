@@ -64,7 +64,7 @@ class ApplicationGen : public iestream_input<message_t,T> {
          * @param file_path
          */
         ApplicationGen(const char* file_path) : 
-                iestream_input<message_t,T>(file_path) {}
+            iestream_input<message_t,T>(file_path) {}
 };
 
 
@@ -138,28 +138,29 @@ int main() {
 
     /**
      * Initialized generator which has output file path, Time and 
-     * given input generates the output
+     * with given input generates the output
      */
     std::shared_ptr<cadmium::dynamic::modeling::model> generator = 
                     cadmium::dynamic::translate::make_dynamic_atomic_model
                     <ApplicationGen, 
                      TIME, 
-                     const char* >(
-                                   "generator" ,
-                                    std::move(i_input_data)
+                     const char* >("generator" ,
+                                   std::move(i_input_data)
                                    );
-
 
     /**
      * Identify output data which has been receoved from subnet1
      */
     std::shared_ptr<cadmium::dynamic::modeling::model> subnet1 = 
-    cadmium::dynamic::translate::make_dynamic_atomic_model<Subnet, TIME>("subnet1");
+    cadmium::dynamic::translate::make_dynamic_atomic_model
+    <Subnet, 
+     TIME>("subnet1"
+          );
 
 
     /**
-     * Store values in top model operations
-     * which have been performed for a time frame and
+     * Store values of top model operations
+     * which have been performed for each time frame and
      * then store in output file
      */
     cadmium::dynamic::modeling::Ports iports_TOP = {};
@@ -174,21 +175,18 @@ int main() {
     cadmium::dynamic::modeling::EOCs eocs_TOP = {
         cadmium::dynamic::translate::make_EOC
         <subnet_defs::out,
-         outp_out>(
-                   "subnet1"
+         outp_out>("subnet1"
                    )
     };
     cadmium::dynamic::modeling::ICs ics_TOP = {
         cadmium::dynamic::translate::make_IC
         <iestream_input_defs<message_t>::out,
-         subnet_defs::in>(
-                          "generator",
+         subnet_defs::in>("generator",
                           "subnet1"
                           )
     };
     std::shared_ptr<cadmium::dynamic::modeling::coupled<TIME>> TOP = 
-    std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>(
-                                                                "TOP", 
+    std::make_shared<cadmium::dynamic::modeling::coupled<TIME>>("TOP", 
                                                                 submodels_TOP, 
                                                                 iports_TOP, 
                                                                 oports_TOP, 
@@ -198,9 +196,9 @@ int main() {
                                                                 );
   
     /**
-     * In this model,  Create a model and measure elapsed time form creations in 
+     * Create a model and measure elapsed time form creations in 
      * seconds. Create runner,  and measure elapsed time form creations in
-     * seconds. Simulation starts and time it took to complete 
+     * seconds. Simulation starts and the time took to complete 
      * the simulation. Simulation is ran until 04:00:00:000 time period.
      */
 
