@@ -4,7 +4,7 @@
  * acknowledgment which sends  input as filepath, 
  * stores output and generates all the log data using 
  * the cadmium and library. It runs with respect
- * to input provided bye input file and runs simulation
+ * to input provided by input file and runs simulation
  * until time 04:00:00:000 is reached.
  *
  */
@@ -54,15 +54,15 @@ struct outp_pack : public cadmium::out_port<message_t> {};
 /**
  * This is application generator class takes file path
  * parameter and waits for input
- * @tParam message T
+ * @Param message T
  */
 template<typename T>
 class ApplicationGen : public iestream_input<message_t,T> {
     public:
         ApplicationGen() = default;
         /**
-         * A parameterized contructor for class application generator 
-         * takes input path of the file that containes the input for
+         * A parameterized constructor for class application generator 
+         * takes input path of the file that contains the input for
          * the application to run
          * @param file_path
          */
@@ -97,7 +97,7 @@ int main() {
 
     /**
      * Loggers definition of cadmium to call source loggers strcture
-     * to generate the log files in a formatted mannar and to store
+     * to generate the log files in a formatted manner and to store
      * them in variables and to be logged to the file
      */
     using info =  cadmium::logger::logger<cadmium::logger::logger_info, 
@@ -244,7 +244,7 @@ int main() {
 
     /**
      * Create a model and measure elapsed time form creations in 
-     * seconds. Create runner,  and measure elapsed time form creations in
+     * seconds. Create runner, and measure elapsed time form creations in
      * seconds. Simulation starts and the time took to complete 
      * the simulation. Simulation is ran until 04:00:00:000 time period.
      */

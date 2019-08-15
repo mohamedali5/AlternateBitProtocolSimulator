@@ -51,7 +51,7 @@ struct outp : public cadmium::out_port<message_t> {};
 /**
  * This is application generator class takes file path
  * parameter and waits for input
- * @tParam message T
+ * @Param message T
  */
 template<typename T>
 class ApplicationGen : public iestream_input<message_t,T> {
@@ -59,9 +59,9 @@ class ApplicationGen : public iestream_input<message_t,T> {
         ApplicationGen() = default;
 
         /**
-         * A parameterized contructor for class application generator 
-         * takes input path of the file that containes the input for
-         * the to run application
+         * A parameterized constructor for class application generator 
+         * takes input path of the file and contains the input
+         * to run application
          * @param file_path
          */
         ApplicationGen(const char* file_path) : 
@@ -97,7 +97,7 @@ int main() {
 
     /**
      * Loggers definition of cadmium to call source loggers strcture
-     * to generate the log files in a formatted mannar and to store
+     * to generate the log files in a formatted manner and to store
      * them in variables and to be logged to the file
      */
     using info =  cadmium::logger::logger<cadmium::logger::logger_info, 
@@ -152,7 +152,7 @@ int main() {
                                    );
 
     /**
-     * Identify output data which has been receoved from receiver1
+     * Identify output data which has been received from receiver1
      */
     std::shared_ptr<cadmium::dynamic::modeling::model> receiver1 = 
                     cadmium::dynamic::translate::make_dynamic_atomic_model
@@ -197,8 +197,8 @@ int main() {
                                                                 ics_TOP 
                                                                 );
     /**
-     * Create a model and measure elapsed  form time of creationd in 
-     * seconds. Create runner,  and measure elapsed time form creations in
+     * Create a model and measure elapsed from time of creations in 
+     * seconds. Create runner, and measure elapsed time form creations in
      * seconds. Simulation starts and the time it took to complete 
      * the simulation. Simulation is ran until 04:00:00:000 time period.
      */

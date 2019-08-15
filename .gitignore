@@ -1,2 +1,4 @@
-bin/*
-build/*
+bin/test/*
+bin/top_model/*
+build/test/*
+build/top_model/*

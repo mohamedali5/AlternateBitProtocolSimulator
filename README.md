@@ -1,14 +1,20 @@
-# New Document# **ALTERNATE BIT PROTOCOL SIMULATOR IMPLEMENTED IN CADMIUM**
+#**ALTERNATE BIT PROTOCOL SIMULATOR IMPLEMENTED IN CADMIUM**
 ---
 ## ORGANIZATION : CARLETON UNIVERSITY
 ---
 ## AUTHORS :
-### ORIGINALLY DEVELOPED BY : Cristina Ruiz Martin
-### MODIFIED BY : Syed Omar Azam, Mohamed Ali and Ammar Al-Mahbashi                  
+### ORIGINALLY DEVELOPED BY : DR. [Cristina Ruiz Martin](https://github.com/cruizm)
+### MODIFIED BY : [Syed Omar Azam](https://github.com/syedomarazam), [Mohamed Ali](https://github.com/mohamedali5) and [Ammar Al-Mahbashi](https://github.com/pcsmartapps)                 
+---
+### TABLE OF CONTENTS
+------
+- [INTRODUCTION](#INTRODUCTION)
+- [SOURCE FILES ORGANIZATION](#SOURCE-FILES-ORGANIZATION)
+- [STEPS TO RUN THE SIMULATOR](#STEPS-TO-RUN-THE-SIMULATOR)
 ---
 ## INTRODUCTION:
 ---
-**ABP** (Alternating Bit Protocol) is a communication protocol to ensure reliable transmission through unreliable network. The sender sends a packet and waits for an acknowledgement. If the acknowledgement doesn't arrive within a predefined time, the sender re-sends this packet until it receives an expected acknowledgement and then sends the next packet. In order to distinguish two consecutive packets, the sender adds an additional bit on each packet (called alternating bit because the sender uses 0 and 1 alternatively). This software is a simulator to replicate the behavior of the Alternating Bit Protocol. 
+**Alternating Bit Protocol** (ABP) is a communication protocol to ensure reliable transmission through unreliable network. The sender sends a packet and waits for an acknowledgement. If the acknowledgement doesn't arrive within a predefined time, the sender re-sends this packet until it receives an expected acknowledgement and then sends the next packet. In order to distinguish two consecutive packets, the sender adds an additional bit on each packet (called alternating bit because the sender uses 0 and 1 alternatively). This software is a simulator to replicate the behavior of the Alternating Bit Protocol. 
 
 The ABP Simulator consists of 3 components: sender, network and receiver. The network is decomposed further to two subnets corresponding to the sending and receiving channel respectively.
 
@@ -25,7 +31,7 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
 
 ## SOURCE FILES ORGANIZATION
 ---
-##### bin [This folder contains all .exe files generated for the project]**
+##### bin [This folder contains all .exe files generated for the project]
 1. test [This folder contains all .exe files generated for testing only]
     - RECEIVER_TEST.exe
     - SENDER_TEST.exe
@@ -91,13 +97,13 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
    - subnet_test_output.txt
 3. include [This folder contains the header files used for unit testing]
       will be updated in future
-#####
-1. makefile
+
+##### makefile
 ---
 
 ## STEPS TO RUN THE SIMULATOR
 ---
-alternatebitprot.pdf contains the explanation of this simulator.
+[alternatebitprot.pdf](https://github.com/mohamedali5/AlternateBitProtocolSimulator/tree/master/doc) contains the explanation of this simulator. Refer to [document](https://github.com/mohamedali5/AlternateBitProtocolSimulator/tree/master/doc) folder to install 3rd party liabraries required to run this project.
 
 1. Update include paths in all the makefiles in this folder and subfolders. You need to update the following lines:
 
