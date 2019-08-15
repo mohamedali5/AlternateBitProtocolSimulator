@@ -53,7 +53,8 @@ struct inp_2 : public cadmium::in_port<message_t> {};
 
 /**
  * Setting output ports for messages 
- */struct outp_ack : public cadmium::out_port<message_t> {};
+ */
+struct outp_ack : public cadmium::out_port<message_t> {};
 struct outp_1 : public cadmium::out_port<message_t> {};
 struct outp_2 : public cadmium::out_port<message_t> {};
 struct outp_pack : public cadmium::out_port<message_t> {};
