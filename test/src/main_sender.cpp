@@ -1,4 +1,4 @@
-/** \This main file implements the operation of Sender file
+/**  \brief This main file implements the operation of Sender file
  *
  * This file prepares application generator for control and 
  * acknowledgment which sends  input as filepath, 

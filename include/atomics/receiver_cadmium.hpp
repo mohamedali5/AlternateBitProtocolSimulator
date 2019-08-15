@@ -56,7 +56,7 @@ class Receiver{
     using defs = receiver_defs; 
     public:
     //Parameters to be overwriten when instantiating the atomic model
-    TIME PREPARATION_TIME; /**< PREPARATION_TIME is a constant that contains the time delay from acknowledge to output. */
+    TIME PREPARATION_TIME; /**< PREPARATION_TIME is a constant that contains the time delay from acknowledge to output. */ //!< Time constant delay 
     /** 
     * Default constructor for Receiver class.
     * Initializes  delay constant, state acknowledgement number
@@ -72,8 +72,8 @@ class Receiver{
      * Structure state definition which holds acknowledge number and receiver state.
      */
     struct state_type{
-        int ack_num;    /**< Alternating bit retrieved from the message and acknowledgement number. */
-        bool sending;   /**< State of the reciver passive or active */
+        int ack_num;    /**< Alternating bit retrieved from the message and acknowledgement number. */ //!< Acknowledgement number
+        bool sending;   /**< State of the reciver passive or active */  //!< Sending state.
     };  state_type state;
 
     // ports definition

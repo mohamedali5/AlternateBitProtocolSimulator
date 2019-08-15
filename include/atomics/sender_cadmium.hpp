@@ -61,8 +61,8 @@ class Sender{
     using defs = sender_defs; 
     public:
     //Parameters to be overwriten when instantiating the atomic model
-    TIME   PREPARATION_TIME; /**< PREPARATION_TIME is a constant that contains the time delay from acknowledge to output. */
-    TIME   timeout;          /**< timeout is a onstant that contains time delay from output to acknowledge */
+    TIME   PREPARATION_TIME; /**< PREPARATION_TIME is a constant that contains the time delay from acknowledge to output. */ //!< Time constant delay
+    TIME   timeout;          /**< timeout is a onstant that contains time delay from output to acknowledge */ //!< Time constant delay
    
     /** 
     * Default constructor for Receiver class.

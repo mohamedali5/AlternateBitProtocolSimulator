@@ -12,8 +12,9 @@
 #include <string>
 #include "../../include/data_structures/message.hpp"
 
-/**\brief Output stream
- * 
+/** Output stream
+ * it is an operator applied to an output stream is known as 
+ * insertion operator, and performs formatted output character sequence
  * @param[out] os reference to ostream - output stream
  * @param[in] msg const reference to struct message_t - message
  */
@@ -22,8 +23,9 @@ ostream& operator<<(ostream& os, const message_t& msg){
     return os;
 }
 
-/**\brief Input stream
- * 
+/** Input stream
+ * it is an operator applied to an output stream is known as 
+ * insertion operator, and performs formatted output character sequence
  * @param[out]  is reference to istream - iutput stream
  * @param[in]  msg const reference to struct message_t - message
  */

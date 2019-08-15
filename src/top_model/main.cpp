@@ -1,4 +1,3 @@
-
 /** \brief Main source file
  * 
  * Initializes COUPLEDs by setting the input and output ports.
@@ -28,7 +27,6 @@
 #include <cadmium/logger/common_loggers.hpp>
 
 //updated relative paths --Syed Omar
-
 #include "../../lib/vendor/NDTime.hpp"
 #include "../../lib/vendor/iestream.hpp"
 
@@ -46,24 +44,36 @@ using hclock=chrono::high_resolution_clock;
 using TIME = NDTime;
 
 
-/***** SETING INPUT PORTS FOR COUPLEDs *****/
+/**
+ * Setting input ports for messages
+ */
 struct inp_control : public cadmium::in_port<message_t> {};
 struct inp_1 : public cadmium::in_port<message_t> {};
 struct inp_2 : public cadmium::in_port<message_t> {};
-/***** SETING OUTPUT PORTS FOR COUPLEDs *****/
-struct outp_ack : public cadmium::out_port<message_t> {};
+
+/**
+ * Setting output ports for messages 
+ */struct outp_ack : public cadmium::out_port<message_t> {};
 struct outp_1 : public cadmium::out_port<message_t> {};
 struct outp_2 : public cadmium::out_port<message_t> {};
 struct outp_pack : public cadmium::out_port<message_t> {};
 
 
-/********************************************/
-/****** APPLICATION GENERATOR *******************/
-/********************************************/
+/**
+ * This is application generator class takes file path
+ * parameter and waits for input
+ * @tParam message T
+ */
 template<typename T>
 class ApplicationGen : public iestream_input<message_t,T>{
     public:
     ApplicationGen() = default;
+    /**
+     * A parameterized contructor for class application generator 
+     * takes input path of the file that containes the input for
+     * the application to run
+     * @param file_path
+     */
     ApplicationGen(const char* file_path) : 
         iestream_input<message_t,T>(file_path) {}
 };
@@ -94,15 +104,29 @@ int main(int argc, char ** argv){
 
     auto start = hclock::now(); //to measure simulation execution time
 
-    /*************** Loggers *******************/
-    //updated relative path --Syed Omar
+    /**
+     * To generate messages and operation logs which are being passed
+     * during execution time of this application and storing them
+     * in the abp_output file as indicated out_data.
+     */
     static std::ofstream out_data("data/top_model/abp_output.txt");
+
+    /**
+     * This is a common sink provider structure 
+     * which calls the ostream that is the output stream
+     * and it return data stored in the file
+     */
     struct oss_sink_provider{
         static std::ostream& sink(){          
             return out_data;
         }
     };
 
+    /**
+     * Loggers definition of cadmium to call source loggers strcture
+     * to generate the log files in a formatted mannar and to store
+     * them in variables and to be logged to the file
+     */
     using info = cadmium::logger::logger<cadmium::logger::logger_info, 
                  cadmium::dynamic::logger::formatter<TIME>, 
                  oss_sink_provider>;
@@ -134,65 +158,93 @@ int main(int argc, char ** argv){
     using logger_top = cadmium::logger::multilogger<log_messages, global_time>;
 
 
-    /*******************************************/
-    /*******************************************/
-    /****** APPLICATION GENERATOR **************/
-    /*******************************************/
+
+    /**
+     * Assign first argument value to input data control for application
+     * generator file for execution and
+     * runs the execution for number of input times 
+     */
     string input_data_control = argv[1];
     const char * i_input_data_control = input_data_control.c_str();
 
+    /**
+     * Initialized generator which has output file path, Time and 
+     * with given input generates the output
+     */
     std::shared_ptr<cadmium::dynamic::modeling::model> generator_con = 
-                    cadmium::dynamic::translate::make_dynamic_atomic_model<ApplicationGen, 
-                                                                           TIME, 
-                                                                           const char* >("generator_con" , 
-                                                                                         std::move(i_input_data_control)
-                                                                                         );
+                    cadmium::dynamic::translate::make_dynamic_atomic_model
+                    <ApplicationGen, 
+                     TIME, 
+                     const char* >("generator_con" , 
+                                   std::move(i_input_data_control)
+                                   );
 
 
-    /********************************************/
-    /****** SENDER ******************************/
-    /********************************************/
-
+    /**
+     * Identify output data which has been sent from sender1
+     */
     std::shared_ptr<cadmium::dynamic::modeling::model> sender1 = 
-                    cadmium::dynamic::translate::make_dynamic_atomic_model<Sender,
-                                                                           TIME>("sender1"
-                                                                                 );
+                    cadmium::dynamic::translate::make_dynamic_atomic_model
+                    <Sender,
+                     TIME>("sender1"
+                           );
 
-    /********************************************/
-    /****** RECIEVER ****************************/
-    /********************************************/
 
+    /**
+     * Identify output data which has been receoved from receiver1
+     */
     std::shared_ptr<cadmium::dynamic::modeling::model> receiver1 = 
-                    cadmium::dynamic::translate::make_dynamic_atomic_model<Receiver, 
-                                                                           TIME>("receiver1"
-                                                                                );
+                    cadmium::dynamic::translate::make_dynamic_atomic_model
+                    <Receiver, 
+                     TIME>("receiver1"
+                           );
 
-    /********************************************/
-    /****** SUBNET ******************************/
-    /********************************************/
-
+    /**
+     * Identify output data which has been receoved from subnet1 and subnet 2
+     */
     std::shared_ptr<cadmium::dynamic::modeling::model> subnet1 = 
-                    cadmium::dynamic::translate::make_dynamic_atomic_model<Subnet, 
-                                                                           TIME>("subnet1"
-                                                                                 );
+                    cadmium::dynamic::translate::make_dynamic_atomic_model
+                    <Subnet, 
+                     TIME>("subnet1"
+                           );
     std::shared_ptr<cadmium::dynamic::modeling::model> subnet2 = 
-                    cadmium::dynamic::translate::make_dynamic_atomic_model<Subnet, 
-                                                                           TIME>("subnet2"
-                                                                                 );
+                    cadmium::dynamic::translate::make_dynamic_atomic_model
+                    <Subnet, 
+                     TIME>("subnet2"
+                           );
 
-    /********************************************/
-    /*******NETWORK******************************/
-    /********************************************/
-    cadmium::dynamic::modeling::Ports iports_Network = {typeid(inp_1),typeid(inp_2)};
-    cadmium::dynamic::modeling::Ports oports_Network = {typeid(outp_1),typeid(outp_2)};
-    cadmium::dynamic::modeling::Models submodels_Network = {subnet1, subnet2};
+    /**
+     * Store values of operations of network input and output ports
+     * which have been performed for each time frame and
+     * then store in output file
+     */
+    cadmium::dynamic::modeling::Ports iports_Network = {
+        typeid(inp_1),
+        typeid(inp_2)
+    };
+    cadmium::dynamic::modeling::Ports oports_Network = {
+        typeid(outp_1),
+        typeid(outp_2)
+    };
+    cadmium::dynamic::modeling::Models submodels_Network = {
+        subnet1, 
+        subnet2
+    };
     cadmium::dynamic::modeling::EICs eics_Network = {
-        cadmium::dynamic::translate::make_EIC<inp_1, subnet_defs::in>("subnet1"),
-        cadmium::dynamic::translate::make_EIC<inp_2, subnet_defs::in>("subnet2")
+        cadmium::dynamic::translate::make_EIC<inp_1, 
+                                              subnet_defs::in>("subnet1"
+                                                               ),
+        cadmium::dynamic::translate::make_EIC<inp_2, 
+                                              subnet_defs::in>("subnet2"
+                                                               )
     };
     cadmium::dynamic::modeling::EOCs eocs_Network = {
-        cadmium::dynamic::translate::make_EOC<subnet_defs::out,outp_1>("subnet1"),
-        cadmium::dynamic::translate::make_EOC<subnet_defs::out,outp_2>("subnet2")
+        cadmium::dynamic::translate::make_EOC<subnet_defs::out,
+                                              outp_1>("subnet1"
+                                                      ),
+        cadmium::dynamic::translate::make_EOC<subnet_defs::out,
+                                              outp_2>("subnet2"
+                                                      )
     };
     cadmium::dynamic::modeling::ICs ics_Network = {};
     std::shared_ptr<cadmium::dynamic::modeling::coupled<TIME>> NETWORK = 
@@ -205,9 +257,13 @@ int main(int argc, char ** argv){
                                                                 ics_Network 
                                                                 );
 
-    /********************************************/
-    /*******ABP SIMULATOR************************/
-    /********************************************/
+
+    /**
+     * Store values of operations of input control and
+     * output packet acknowledgement of ABP simulator input/output ports
+     * which have been performed for each time frame and
+     * then store in output file
+     */
     cadmium::dynamic::modeling::Ports iports_ABPSimulator = {
         typeid(inp_control)
     };
@@ -222,8 +278,8 @@ int main(int argc, char ** argv){
     };
     cadmium::dynamic::modeling::EICs eics_ABPSimulator = {
         cadmium::dynamic::translate::make_EIC<inp_control, 
-                                              sender_defs::controlIn>(
-                                              "sender1")
+                                              sender_defs::controlIn>("sender1"
+                                                                      )
     };
     cadmium::dynamic::modeling::EOCs eocs_ABPSimulator = {
         cadmium::dynamic::translate::make_EOC<sender_defs::packetSentOut,
@@ -261,9 +317,11 @@ int main(int argc, char ** argv){
                                                                 );
 
 
-    /********************************************/
-    /*******TOP MODEL****************************/
-    /********************************************/
+    /**
+     * Store values of top model operations
+     * which have been performed for each time frame and
+     * then store in output file
+     */
     cadmium::dynamic::modeling::Ports iports_TOP = {};
     cadmium::dynamic::modeling::Ports oports_TOP = {
         typeid(outp_pack),
@@ -298,10 +356,13 @@ int main(int argc, char ** argv){
                                                                 ics_TOP 
                                                                 );
 
-    /********************************************/
-    /*******RUN TIME*****************************/
-    /********************************************/
-
+    /**
+     * Create a model and measure elapsed time form creations in 
+     * seconds during run time. Create runner,  and measure elapsed 
+     * time form creations in seconds. Simulation starts and the
+     * time took to complete the simulation. Simulation is ran
+     *  until 04:00:00:000 time period.
+     */
     auto elapsed1 = std::chrono::duration_cast<std::chrono::duration<double, 
                     std::ratio<1>>>(hclock::now() - start).count(); ///< Run-time to create model
     cout << "Model Created. Elapsed time: " << elapsed1 << "sec" << endl;

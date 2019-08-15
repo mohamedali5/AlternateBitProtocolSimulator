@@ -1,5 +1,5 @@
     
-/** \This main file implements the operation of Receiver file
+/**  \brief This main file implements the operation of Receiver file
  *
  * This file prepares application generator which receives
  * input as filepath, stores output and generates

@@ -1,4 +1,4 @@
-/** \This main file implements the operation of subnet file
+/**  \brief This main file implements the operation of subnet file
  *
  * This file prepares application generator which takes the
  * input as filepath, stores output and generates
