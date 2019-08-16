@@ -1,3 +1,9 @@
+
+/** \brief Header file for message containing headers
+ * 
+ * Defines a message_t structure
+ */
+
 #ifndef BOOST_SIMULATION_MESSAGE_HPP
 #define BOOST_SIMULATION_MESSAGE_HPP
 
@@ -7,9 +13,9 @@
 
 using namespace std;
 
-/*******************************************/
-/**************** Message_t ****************/
-/*******************************************/
+/** Define structure of message_t
+ *  message_t will containg a a field value of type float
+ */
 struct message_t{
 
     message_t(){}
@@ -28,4 +34,4 @@ istream& operator>> (istream& is, message_t& msg);
 ostream& operator<<(ostream& os, const message_t& msg);
 
 
-#endif // BOOST_SIMULATION_MESSAGE_HPP
+#endif ///< BOOST_SIMULATION_MESSAGE_HPP - end of ifndef
