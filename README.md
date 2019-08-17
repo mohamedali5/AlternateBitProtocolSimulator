@@ -124,12 +124,12 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
    2.  Set the command prompt in the AlternateBitProtocolSimulator folder. To do so, type in the terminal the path to this folder. 
    3.  To compile the whole project, type in the terminal: 
        make clean; make all 
-   4.  To compile the whole project, type in the terminal: 
-   5.  To run the simulation, type in the terminal "**./NAME_OF_THE_COMPILED_FILE NAME_OF_THE_INPUT_FILE**". For this test you need to type:
+   4.  To run the simulation, type in the terminal "**./NAME_OF_THE_COMPILED_FILE NAME_OF_THE_INPUT_FILE**". For this test you need to type:
    
    >           ./bin/top_model/ABP data/top_model/input_abp_1.tx  
 
-   6. To check the output of the simulation, open  "**abp_output.txt**" present in data/top_model folder.
+   5. To check the output of the simulation, open  "**abp_output.txt**" present in data/top_model folder.
+   6. To check the more readable output of the simulation, open "**abp_output_transform.txt**" present in data/top_model folder.
    7. To execute the simulator with different inputs 
       1. Create new .txt files with the same structure as input_abp_0.txt or input_abp_1.txt 
       2. Run the simulator using the instructions in step v 
@@ -137,14 +137,15 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
       
    >           Example: mv data/top_model/abp_output.txt data/top_model/abp_output_0.txt  
    
-    8. To run the subnet test, type in the terminal "**./NAME_OF_THE_COMPILED_FILE**". For this specific test you need to type:**/bin/test/SUBNET_TEST** 
+   8. To run the subnet test, type in the terminal "**./NAME_OF_THE_COMPILED_FILE**". For this specific test you need to type:**/bin/test/SUBNET_TEST** 
       1. To check the output of the test, open  "**test/data/subnet_test_output.txt**" 
+      2. To check the more readable output of the test, open "**test/data/subnet_test_output_transform.txt**"
    9.  To run receiver and sender tests, the steps are analogous to viii 
    10. User also have option to compile simulator or testing part alone by using the following commands.
    
     >          make clean_simulation; make simulation
     >          make clean_test; make test
    
-    11. To run simulation, refer to steps v to vii.
-    12. To run tests, refer to steps viii to ix.
+   11. To run simulation, refer to steps v to vii.
+   12. To run tests, refer to steps viii to ix.
 

@@ -1,4 +1,4 @@
-bin/test/*
-bin/top_model/*
-build/test/*
-build/top_model/*
+bin/test/*.exe
+bin/top_model/*.exe
+build/test/*.o
+build/top_model/*.o

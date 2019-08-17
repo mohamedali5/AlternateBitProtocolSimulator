@@ -64,8 +64,10 @@ void transform_output(char *ip_file_name, char *op_file_name) {
 	 * setting the column names for our output file.
 	 * setw() function is used to give indentation in the output file.
 	 */
-	outputfile <<setw(7)<<"Time"<<setw(20)<<"Value"<<setw(14)<<"Port"<<setw(22)<<"Component"<<endl;
-	outputfile <<"----------------------------------------------------------------------"<<endl;
+	outputfile <<setw(7)<<"Time"<<setw(20)<<"Value"<<setw(14) \
+			   <<"Port"<<setw(22)<<"Component"<<endl;
+	outputfile <<"-------------------------------------------"
+				 "---------------------------"<<endl;
 	
 	//gcc users
 	if((fp = fopen(ip_file_name, "r")) == NULL) {
@@ -185,7 +187,8 @@ void transform_output(char *ip_file_name, char *op_file_name) {
 
 	        				if(time!="00:00:00:000"){
 
-	        					outputfile<<time<<setw(15)<<port_value<<setw(20)<<port<<setw(20)<<component<<endl;
+	        					outputfile<<time<<setw(15)<<port_value<<setw(20) \
+	        							  <<port<<setw(20)<<component<<endl;
 							}
 
 						}else {
