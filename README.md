@@ -66,6 +66,8 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
    - subnet_cadmium.hpp
 2. data_structures [This folder contains the header file for data structures used in the project]
    - message.hpp
+3. transform_output [This folder contains header file that converts output to a more readable format]
+   - transform_output.hpp
 
 ##### lib [This folder contains the 3rd party files header files and functionalties used in the project]
 1. cadmium [This folder contains cadmium functionalities]
@@ -74,7 +76,6 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
       see folder contents for more information
 3. vendor [This folder contains 3rd party header files needed in the project]
    - iestream.hpp
-   - NDTime.hpp
 
 ##### src [This folder contains source code of the project]
 1. data_structures [This folder contains the data structures used in the project]
@@ -105,14 +106,19 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
 ---
 [alternatebitprot.pdf](https://github.com/mohamedali5/AlternateBitProtocolSimulator/tree/master/doc) contains the explanation of this simulator. Refer to [document](https://github.com/mohamedali5/AlternateBitProtocolSimulator/tree/master/doc) folder to install 3rd party liabraries required to run this project.
 
-1. Update include paths in all the makefiles in this folder and subfolders. You need to update the following lines:
+1. To initiate and update cadmium and DESTimes submodule folders, run the following commands:
+
+   >           git submodule init
+   >           git submodule update
+
+2. Update include paths in all the makefiles in this folder and subfolders. You need to update the following lines:
 
    1. INCLUDECADMIUM=-I ../../cadmium/include 
    2. Update the relative path to cadmium/include from the folder where the makefile is. You need to take into account where you copied the folder during the installation process 
    
    >           Example: INCLUDECADMIUM=-I ../../cadmium/include
    
-2. Run the simulator and unit tests
+3. Run the simulator and unit tests
 
    1. Open the terminal. Press in your keyboard Ctrl+Alt+t 
    2.  Set the command prompt in the AlternateBitProtocolSimulator folder. To do so, type in the terminal the path to this folder. 
