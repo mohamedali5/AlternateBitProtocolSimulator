@@ -185,11 +185,11 @@ void transform_output(char *ip_file_name, char *op_file_name) {
 	        			 */ 
 	        			if (outputfile.is_open()){
 
-	        				if(time!="00:00:00:000"){
+	        			//	if(time!="00:00:00:000"){
 
 	        					outputfile<<time<<setw(15)<<port_value<<setw(20) \
 	        							  <<port<<setw(20)<<component<<endl;
-							}
+							//}
 
 						}else {
 							cout << "Unable to open file";

@@ -33,7 +33,7 @@
 
 //define new input and output filename and path
 #define input_file_name "test/data/receiver_test_output.txt"
-#define output_file_name "test/data/receiver_test_output_tranform.txt"
+#define output_file_name "test/data/receiver_test_output_transform.txt"
 
 
 using namespace std;
@@ -86,7 +86,7 @@ int main() {
      * during execution time of this application and storing them
      * in the receiver_test_output file as indicated out_data.
      */
-    static std::ofstream out_data("test/data/receiver_test_output.txt");
+    static std::ofstream out_data(input_file_name);
     
     /**
      * This is a common sink provider structure 
