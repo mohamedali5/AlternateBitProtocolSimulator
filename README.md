@@ -66,8 +66,9 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
    - subnet_cadmium.hpp
 2. data_structures [This folder contains the header file for data structures used in the project]
    - message.hpp
-3. transform_output [This folder contains header file that converts output to a more readable format]
+3. transform_output [This folder contains header file that converts output to a more readable format and set file paths]
    - transform_output.hpp
+   - code_optimize.hpp
 
 ##### lib [This folder contains the 3rd party files header files and functionalties used in the project]
 1. cadmium [This folder contains cadmium functionalities]

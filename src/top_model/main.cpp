@@ -10,7 +10,8 @@
  *      5- Network
  */
 
-
+//commented out code is redundant and is moved to code_otpimized.hpp file
+/*
 #include <iostream>
 #include <chrono>
 #include <algorithm>
@@ -29,12 +30,8 @@
 //updated relative paths --Syed Omar
 
 #include "../../lib/DESTimes/include/NDTime.hpp"
-
 #include "../../lib/vendor/iestream.hpp"
-
-
 #include "../../include/data_structures/message.hpp"
-
 #include "../../include/atomics/sender_cadmium.hpp"
 #include "../../include/atomics/receiver_cadmium.hpp"
 #include "../../include/atomics/subnet_cadmium.hpp"
@@ -44,13 +41,12 @@
 
 #define input_file_name "data/top_model/abp_output.txt"
 #define output_file_name "data/top_model/abp_output_transform.txt"
+*/
+#include "../../include/transform_output/code_optimize.hpp"
+//using namespace std;
 
-using namespace std;
-
-using hclock=chrono::high_resolution_clock;
-using TIME = NDTime;
-
-
+//using hclock=chrono::high_resolution_clock;
+//using TIME = NDTime;
 
 /**
  * Setting input ports for messages
@@ -113,29 +109,34 @@ int main(int argc, char ** argv){
 
     auto start = hclock::now(); //to measure simulation execution time
 
+    //commented out code is redundant and is moved to code_otpimized.hpp file
     /**
      * To generate messages and operation logs which are being passed
      * during execution time of this application and storing them
      * in the abp_output file as indicated out_data.
      */
-    static std::ofstream out_data("data/top_model/abp_output.txt");
+    //static std::ofstream out_data("data/top_model/abp_output.txt");
 
     /**
      * This is a common sink provider structure 
      * which calls the ostream that is the output stream
      * and it return data stored in the file
      */
+    /*
     struct oss_sink_provider{
         static std::ostream& sink(){          
             return out_data;
         }
     };
+    */
 
+    //commented out code is redundant and is moved to code_otpimized.hpp file
     /**
      * Loggers definition of cadmium to call source loggers strcture
      * to generate the log files in a formatted mannar and to store
      * them in variables and to be logged to the file
      */
+    /*
     using info = cadmium::logger::logger<cadmium::logger::logger_info, 
                  cadmium::dynamic::logger::formatter<TIME>, 
                  oss_sink_provider>;
@@ -165,8 +166,10 @@ int main(int argc, char ** argv){
                                                  global_time, 
                                                  local_time>;
     using logger_top = cadmium::logger::multilogger<log_messages, global_time>;
+    */
 
-
+    set_file_name("abp_simulator");
+    using logger_top = logger_top;
 
     /**
      * Assign first argument value to input data control for application

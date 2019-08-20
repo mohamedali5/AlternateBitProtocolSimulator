@@ -37,8 +37,8 @@ std::string& rtrim(std::string& str, const std::string& chars = "\t\n\v\f\r ")
     return str;
 }
 
-void transform_output(char *ip_file_name, char *op_file_name) {
-	
+void transform_output(const char *ip_file_name,const char *op_file_name) {
+
 	/**
 	 * Creating a file pointer which will hold input file name
 	 */
@@ -47,7 +47,8 @@ void transform_output(char *ip_file_name, char *op_file_name) {
 	/**
 	 * temp array is used to store the one line read from input file.
 	 */
-	char line[512],*pattern="00:";
+	char line[512];
+	const char *pattern="00:";
 	
 	/**
 	 * string variables to hold imtermediate sub-strings extracted from input file

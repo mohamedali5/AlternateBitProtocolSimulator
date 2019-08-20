@@ -9,7 +9,8 @@
  *
  */
 
-
+//commented out code is redundant and is moved to code_otpimized.hpp file
+/*
 #include <iostream>
 #include <chrono>
 #include <algorithm>
@@ -34,12 +35,13 @@
 //define new input and output filename and path
 #define input_file_name "test/data/receiver_test_output.txt"
 #define output_file_name "test/data/receiver_test_output_transform.txt"
+*/
+#include "../../include/transform_output/code_optimize.hpp"
 
+//using namespace std;
 
-using namespace std;
-
-using hclock = chrono::high_resolution_clock;
-using TIME = NDTime;
+//using hclock = chrono::high_resolution_clock;
+//using TIME = NDTime;
 
 
 /**
@@ -81,30 +83,35 @@ int main() {
     //to measure simulation execution time
     auto start = hclock::now(); 
 
+    //commented out code is redundant and is moved to code_otpimized.hpp file
     /**
      * To generate messages and operation logs which are being passed
      * during execution time of this application and storing them
      * in the receiver_test_output file as indicated out_data.
      */
-    static std::ofstream out_data(input_file_name);
+    //static std::ofstream out_data(input_file_name);
     
+    //commented out code is redundant and is moved to code_otpimized.hpp file
     /**
      * This is a common sink provider structure 
      * which calls the ostream that is the output stream
      * and it return data stored in the file
      */
+    /*
     struct oss_sink_provider {
         static std::ostream& sink() {          
             return out_data;
         }
     };
+    */
 
-
+    //commented out code is redundant and is moved to code_otpimized.hpp file
     /**
      * Loggers definition of cadmium to call source loggers strcture
      * to generate the log files in a formatted manner and to store
      * them in variables and to be logged to the file
      */
+    /*
     using info =  cadmium::logger::logger<cadmium::logger::logger_info, 
                   cadmium::dynamic::logger::formatter<TIME>, 
                   oss_sink_provider>;
@@ -134,8 +141,9 @@ int main() {
                                                  global_time, 
                                                  local_time>;
     using logger_top = cadmium::logger::multilogger<log_messages, global_time>;
-
-
+    */
+    set_file_name("receiver");
+    using logger_top = logger_top;
 
     /**
      * Get input data control for receiver file for execution and
