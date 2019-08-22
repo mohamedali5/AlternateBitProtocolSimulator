@@ -118,7 +118,7 @@ int main(int argc, char ** argv){
      * during execution time of this application and storing them
      * in the abp_output file as indicated out_data.
      */
-    static std::ofstream out_data("data/top_model/abp_output.txt");
+    static std::ofstream out_data(input_file_name);
 
     /**
      * This is a common sink provider structure 
