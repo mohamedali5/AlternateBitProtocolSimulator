@@ -189,12 +189,9 @@ void transform_output(const char *ip_file_name, const char *op_file_name) {
 	        			 */ 
 	        			if (outputfile.is_open()){
 
-	        			//	if(time!="00:00:00:000"){
-
-	        					outputfile<<time<<setw(15)<<port_value<<setw(20) \
-	        							  <<port<<setw(20)<<component;
-							//}
-
+	        				outputfile<<time<<setw(15)<<port_value<<setw(20) \
+	        						  <<port<<setw(20)<<component;
+				
 						}else {
 							cout << "Unable to open file";
 						}
@@ -208,7 +205,7 @@ void transform_output(const char *ip_file_name, const char *op_file_name) {
 		}
 	}
 	
-	//Close the file if still open.
+	/*Close the file if still open*/
 	if(fp) {
 		fclose(fp);
 	}
