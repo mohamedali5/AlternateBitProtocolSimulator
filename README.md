@@ -154,4 +154,5 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
    
    11. To run simulation, refer to steps v to vii.
    12. To run tests, refer to steps viii to ix.
+   13. User have the option to view and simulate the results using a graphical user interface. For more details on how to use this    feature, go to https://github.com/mohamedali5/ABP_Gui
 
