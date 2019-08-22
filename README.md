@@ -53,6 +53,7 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
    - input_abp_1.txt
    - abp_output_0.txt
    - abp_output_1.txt
+   - abp_output_transform.txt
 
 ##### doc [This folder contains documentaion files for the project]
 1. alternatebitprot.pdf
@@ -82,6 +83,8 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
    - message.cpp
 2. top_model [This folder contains source code for the Alternate Bit Protocol simulator]  
    - main.cpp
+3. transform_output [This folder contains source code that converts output to a more readable format]
+   - transform_output.cpp
 
 ##### test [This folder the unit test for the different include files]
 1. src [This folder contains the source code of the receiver, sender and subnet]
@@ -91,11 +94,14 @@ The **sender** behavior is complex. The sender changes from initial phase passiv
 2. data [This folder contains some data for performin unit test of the receiver, sender and subnet]
    - receiver_input_test.txt
    - receiver_test_output.txt
+   - receiver_test_output_transform.txt
    - sender_input_test_ack_In.txt
    - sender_input_test_control_In.txt
    - sender_test_output.txt
+   - sender_test_output_transform.txt
    - subnet_input_test.txt
    - subnet_test_output.txt
+   - subnet_test_output_transform.txt
 3. include [This folder contains the header files used for unit testing]
       will be updated in future
 
