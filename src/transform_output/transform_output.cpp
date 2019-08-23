@@ -68,8 +68,6 @@ void transform_output(const char *ip_file_name, const char *op_file_name) {
 	 * setting the column names for our output file.
 	 * setw() function is used to give indentation in the output file.
 	 */
-	//outputfile <<setw(7)<<"Time"<<setw(20)<<"Value"<<setw(14) \
-	//		   <<"Port"<<setw(22)<<"Component"<<endl;
 	outputfile << setw(7) << "Time" << setw(20) << "Value" << setw(22) \
 	<< "Packet Number" << setw(22) << "Alternating Bit" << setw(18) \
 	<< "Port" << setw(18) << "Component" << endl;
@@ -170,7 +168,7 @@ void transform_output(const char *ip_file_name, const char *op_file_name) {
 						else if (component== "generator_con") {
 							component_gen_c = "generator_con";
 						}
-						
+
 						/**
 						 * for each token_3, we extract the port value by using strstr() with "{" delimiter.
 						 * port value is present in a "{}" brackets.
@@ -186,18 +184,19 @@ void transform_output(const char *ip_file_name, const char *op_file_name) {
 							
 							in = token_4;
 							port_value = in.substr( 1 , ( in.find_first_of('}', 0) - 1) );
-			        			/** 
-								* Check Alternating Bit status,only if it is equal to 1
-								*/
-								if (port_value.length() ==1 ){
-									packet_num = port_value.substr(0, port_value.length() - 0);
-									if ((component_gen_c == "generator_con") || (port_value == "5") )
-									{
+			        		/** 
+							* Check Alternating Bit status,only if it is equal to 1
+							*/
+							if (port_value.length() ==1 ){
+								packet_num = port_value.substr(0, port_value.length() - 0);
+								if ((component_gen_c == "generator_con") || (port_value == "5") ){
+										if (port !="packetSentOut"){
 											altern_bit = "NA";
 											component_gen_c = " ";
-									}
-
+										}
 								}
+
+							}
 						   /** 
 							* Sort packets that are less than 10 and find out alternating bit
 							*/
