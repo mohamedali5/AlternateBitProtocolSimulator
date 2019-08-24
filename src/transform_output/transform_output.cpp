@@ -68,8 +68,8 @@ void transform_output(const char *ip_file_name, const char *op_file_name) {
 	 * setting the column names for our output file.
 	 * setw() function is used to give indentation in the output file.
 	 */
-	outputfile << setw(7) << "Time" << setw(20) << "Value" << setw(22) \
-	<< "Packet Number" << setw(22) << "Alternating Bit" << setw(18) \
+	outputfile << setw(7) << "Time" << setw(20) << "Value" << setw(22) 
+	<< "Packet Number" << setw(22) << "Alternating Bit" << setw(18) 
 	<< "Port" << setw(18) << "Component" << endl;
 	outputfile <<"-------------------------------------------------------"
 				 "----------------------------------------------------"<<endl;
@@ -234,8 +234,8 @@ void transform_output(const char *ip_file_name, const char *op_file_name) {
 		        			 * if time is not zero then we write the line to output file.
 		        			 */ 
 		        			if (outputfile.is_open()){
-		        				outputfile<<time<<setw(15)<<port_value<<setw(20) \
-		        				<<packet_num<<setw(20)<<altern_bit<<setw(20) \
+		        				outputfile<<time<<setw(15)<<port_value<<setw(20)
+		        				<<packet_num<<setw(20)<<altern_bit<<setw(20) 
 		        				<<port<<setw(20)<<component;
 					
 							}else {
